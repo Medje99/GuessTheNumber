@@ -1,17 +1,9 @@
 :root {
-  --color-primary: #3399ff;
+  --color-primary: rgb(51, 153, 255);
   --color-primary-light: #66b3ff;
   --color-primary-dark: #0080ff;
-  --color-black: #000000;
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
-  --color-grey-light-4: #ccc;
   --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-  --color-grey-dark-3: #999;
-  --border:linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
-  --line: 1px solid var(--color-primary); }
+  --background-color-1:linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark)); }
 
 * {
   margin: 0px;
@@ -25,30 +17,58 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
-  overflow: hidden; }
+  height: 100%; }
+  @media only screen and (max-width: 81.25em) {
+    html {
+      font-size: 55%; } }
 
 body {
   font-family: 'Open Sans',sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: var(--color-grey-dark-3);
-  background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
+  background-image: var(--background-color-1);
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh; }
+  overflow: hidden; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+input[type=number] {
+  -moz-appearance: textfield; }
+
+.colorChange__red {
+  animation: red-change 1s ease-in; }
+
+.colorChange__green {
+  animation: green-change 1s ease-in; }
 
 .container {
   max-width: 150rem;
   margin: 12.5rem auto;
   background-color: var(--color-primary);
-  box-shadow: var(--shadow-dark); }
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  animation: opacityOne 1.5s ease-in;
+  min-height: 50rem;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden; }
+  @media only screen and (max-width: 93.75em) {
+    .container {
+      margin: 0; } }
+  @media only screen and (max-width: 81.25em) {
+    .container {
+      margin: 0; } }
 
 .header {
   font-size: 1.4rem;
   height: 5rem;
   background-color: var(--color-grey-dark-1);
   border-bottom: 5px solid var(--color-primary);
-  border-radius: px;
   display: flex;
   justify-content: space-between;
   align-items: center; }
@@ -60,8 +80,15 @@ body {
   flex: 0 0 20%;
   background-color: var(--color-grey-dark-1);
   border-right: 5px solid var(--color-primary);
+  display: flex;
   flex-direction: column;
-  font-size: 2rem; }
+  justify-content: space-between;
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  list-style-type: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center; }
 
 .main {
   background-color: var(--color-grey-dark-1);
@@ -77,27 +104,20 @@ body {
   color: var(--color-primary);
   display: flex;
   margin-right: auto;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  letter-spacing: .5rem; }
 
-.board {
-  color: var(--color-primary);
-  margin-top: .5rem;
-  font-size: 3rem;
-  list-style-type: none;
-  text-transform: uppercase;
-  font-weight: 600;
+.option {
+  font-size: 1.5rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center; }
-  .board li {
-    text-align: center; }
-
-.score {
-  margin-top: 2rem; }
-
-.maxScore {
-  margin-top: 2rem; }
+  align-items: center;
+  flex-wrap: wrap; }
+  .option__digits {
+    margin: 2rem 0; }
+  @media only screen and (max-width: 62.5em) {
+    .option {
+      font-size: 40%; } }
 
 .number {
   display: flex;
@@ -105,7 +125,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   height: 30rem; }
-  .number__active {
+  .number__guess, .number__active {
     height: 10rem;
     width: 30rem;
     color: var(--color-primary);
@@ -117,8 +137,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center; }
+    @media only screen and (max-width: 62.5em) {
+      .number__guess, .number__active {
+        width: 20rem;
+        font-size: 3rem; } }
+  .number__guess {
+    background-color: var(--color-grey-dark-1);
+    text-align: center;
+    outline: none; }
 
-.btn__one {
+.btn__one, .btn__two {
   padding: 1.5rem 3rem;
   font-size: 1.5rem;
   text-transform: uppercase;
@@ -128,14 +156,84 @@ body {
   background-color: #fff;
   border: none;
   border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease 0s;
   cursor: pointer;
   outline: none; }
-  .btn__one:hover {
-    background-color: var(--color-primary);
+  @media only screen and (max-width: 62.5em) {
+    .btn__one, .btn__two {
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      letter-spacing: 1.5px; } }
+  .btn__one:hover, .btn__two:hover {
+    background-image: var(--background-color-1);
     box-shadow: 0px 15px 20px rgba(51, 153, 255, 0.4);
     color: #fff;
     transform: translateY(-0.7rem); }
-  .btn__one:active {
+  .btn__one:active, .btn__two:active {
     transform: translateY(0.5rem); }
+
+.btn__two {
+  pointer-events: none; }
+
+#digits,
+#time {
+  width: 5rem;
+  height: 2.5rem;
+  text-align: center;
+  outline: none;
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary); }
+  #digits:hover,
+  #time:hover {
+    box-shadow: 0px 15px 20px rgba(51, 153, 255, 0.4); }
+
+#time {
+  width: 7.5rem; }
+  @media only screen and (max-width: 62.5em) {
+    #time {
+      font-size: 1.2rem;
+      width: 40%; } }
+
+@media only screen and (max-width: 62.5em) {
+  #digits {
+    font-size: 1.2rem;
+    width: 30%; } }
+
+@media only screen and (max-width: 62.5em) {
+  .gameScore {
+    font-size: 1.75rem; } }
+
+@keyframes opacityOne {
+  from {
+    opacity: 0; }
+  25% {
+    opacity: 0.25; }
+  50% {
+    opacity: 0.50; }
+  75% {
+    opacity: 0.75; }
+  100% {
+    opacity: 100; } }
+
+@keyframes red-change {
+  0% {
+    color: red;
+    font-size: 3.5rem; }
+  50% {
+    color: red;
+    font-size: 3rem; }
+  100% {
+    color: var(--color-primary); } }
+
+@keyframes green-change {
+  0% {
+    color: lightgreen;
+    font-size: 3.5rem; }
+  50% {
+    color: lightgreen;
+    font-size: 3rem; }
+  100% {
+    color: var(--color-primary); } }
