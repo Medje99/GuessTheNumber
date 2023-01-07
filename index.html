@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Guess The Number</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="img/questionMark.png" alt="Logo" class="logo">
+            <h1 class="game">Guess the number</h1>
+            <a href=""></a>
+        </header>
+        
+
+
+        <div class="content">
+            <nav class="sidebar">
+                    <div class="option">
+                        <div class="option__digits">
+                            <label>Choose the number of digits</label><br>
+                                <select id="digits" name="digits">
+                                    <option value="3" >3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+
+                                </select>
+                        </div>
+                        <div class="option__time">
+                            <label>Choose time of display</label><br>
+                                <select id="time" name="time">
+                                    <option value="1000">1s</option>
+                                    <option value="750">0.75s</option>
+                                    <option value="500">0.5s</option>
+                                    <option value="250">0.25s</option>
+                                </select>
+                        </div>
+                    </div>
+                    
+                    <div class="gameScore">
+                        <div class="score">
+                            Score<br>
+                            <span id="scorenumber">0</span>
+                        </div>
+                        <div class="maxScore">
+                            High Score<br>
+                            <spam id="maxScore">0</span>
+                        </div>
+                    </div>
+                    
+            </nav>
+        
+            <main class="main">
+                <div class="number">
+                        <div class="number__active">
+                            <span>***</span>
+                        </div>
+                        <button class="btn__one">Generate a number</button>    
+                </div>
+
+                
+
+
+                <div class="number">
+                    <input type="number" name="number" class="number__guess" disabled>
+                    <button href="#" class="btn__two"  >Submit a number</button> 
+            </div>
+                
+            </main>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="main.js"></script>
+</html>

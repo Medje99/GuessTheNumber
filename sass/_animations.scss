@@ -1,0 +1,45 @@
+
+@keyframes opacityOne {
+    from {
+        opacity: 0;
+    }
+    25%{
+        opacity: 0.25;
+    }
+    50%{
+        opacity: 0.50;
+    }
+    75%{
+        opacity: 0.75;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+
+
+@keyframes red-change {
+    0% { 
+        color: red ;
+        font-size: 3.5rem;
+    }
+    50% { 
+        color: red;
+        font-size: 3rem;
+    }
+    100% { color: var(--color-primary); 
+    }
+  }
+
+  @keyframes green-change {
+    0% { 
+        color: lightgreen ;
+        font-size: 3.5rem;
+    }
+    50% { 
+        color: lightgreen;
+        font-size: 3rem;
+    }
+    100% { color: var(--color-primary); 
+    }
+  }
