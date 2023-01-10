@@ -109,15 +109,23 @@
             transform: translateY(-.7rem);
 
         }
+        &:focus{
+            background-image: var(--background-color-1);
+            box-shadow: 0px 15px 20px rgba(51,153,255, 0.4);
+            color: #fff;
+            transform: translateY(-.7rem);
+
+        }
 
        &:active{
         transform: translateY(.5rem);
 
-       
        }     
     }
     &__two{
         pointer-events: none;
+
+        
     }
 }
 
@@ -158,4 +166,22 @@
     @media only screen and (max-width: $bp-medium) {
         font-size: 1.75rem;
     }
+}
+
+.lastNum{
+    color: var(--color-primary);
+    font-size: 2rem;
+    
+}
+
+
+  
+.rules{
+    background-color: transparent;
+    border: none;
+    right: 0px;
+    bottom: -5px;
+    font-size: 4rem;
+    position: absolute;
+    color: var(--color-primary);
 }

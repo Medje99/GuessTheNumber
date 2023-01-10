@@ -6,7 +6,10 @@ let guessNum = $('.number__guess')
 let givenNum = $('.number__active > span')
 let score = $('#scorenumber');
 let maxScore = $('#maxScore');
- 
+let lastNum = $('.lastNum > span');
+let rules = $('.rules');
+
+
 
 digits.on('change', function(){//When you select the number of digits to display this will execute
     switch(digits.val()){
@@ -68,6 +71,8 @@ generateNum.on('click',function getNum(){ //When you click 'Generate a number' b
     guessBtn.css('pointer-events','all')
     score.removeAttr('class')
 
+    $('.number__guess').focus();
+
 
 if(digits.val() == '3'){//Get the number of digits based on your selection
     givenNum.text(Math.floor(Math.random() * (1000 - 100 + 1) ) + 100);
@@ -85,16 +90,30 @@ setTimeout(() => {//This will hide a shown number after the display time that yo
     hideNum()
   }, selectedTime)
 
+    
+   
+
 });
 
 let sc = 0;
 let getMaxNum = localStorage.getItem('counter') //the highest score you have will be stored in this variable
 maxScore.text(getMaxNum) //maxScore that is shown on screen will get highest score you have
 
-guessBtn.on('click',function (){ //This will execute when you click 'Submit a number' btn
+
+
+
+
+  
+
+
+
+
+
+guessBtn.on('click',function xf(){ //This will execute when you click 'Submit a number' btn
     generateNum.css('pointer-events','all')
     showNum()
  
+
 
     if(guessNum.val() == ""){
         alert('Insert a number')
@@ -103,8 +122,11 @@ guessBtn.on('click',function (){ //This will execute when you click 'Submit a nu
         generateNum.css('pointer-events','none')
         hideNum()
         return;
+   
     }else if(guessNum.val() !== givenNum.text()){
         guessBtn.css('pointer-events','none')
+        
+
         if(givenNum.text().length == 3){
             sc -= 4;
             score.text(`${sc}`);
@@ -131,6 +153,7 @@ guessBtn.on('click',function (){ //This will execute when you click 'Submit a nu
             score.addClass("colorChange__red")
           
         }
+
     }else if(guessNum.val() == givenNum.text()){
         guessBtn.css('pointer-events','none')
         guessNum.prop('disabled',true)
@@ -172,15 +195,16 @@ guessBtn.on('click',function (){ //This will execute when you click 'Submit a nu
         maxScore.text(localStorage.getItem('counter')) 
     }
 
+    lastNum.text(givenNum.text())
     givenNum.text('')
     guessNum.val('')
     guessNum.prop('disabled',true)
 
 });    
 
-
-
-
-
+rules.on('click',function(){
+    alert('Correct guess:\n3 digits = +0.25\n4 digits = +0.5\n5 digits = +1\n6 digits = +2\n7 digits = +4')
+    alert('Incorrect guess:\n3 digits = -4\n4 digits = -2\n5 digits = -1\n6 digits = -0.5\n7 digits = -0.25')    
+})
 
 
