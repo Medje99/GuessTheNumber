@@ -195,6 +195,9 @@ guessBtn.on('click',function xf(){ //This will execute when you click 'Submit a 
         maxScore.text(localStorage.getItem('counter')) 
     }
 
+
+    // $('.btn__one').focus() this will focus 'Generate a number' btn
+    $('.btn__two').blur()
     lastNum.text(givenNum.text())
     givenNum.text('')
     guessNum.val('')
