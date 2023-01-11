@@ -68,11 +68,14 @@ function showNum(){
 generateNum.on('click',function getNum(){ //When you click 'Generate a number' btn
     generateNum.css('pointer-events','none')
     guessNum.prop('disabled', false);
-    guessBtn.css('pointer-events','all')
     score.removeAttr('class')
-
     $('.number__guess').focus();
 
+    if(lastNum.hasClass("colorChange__lastNum_red")){ 
+        lastNum.removeClass("colorChange__lastNum_red") 
+     }else{
+        lastNum.removeClass("colorChange__lastNum_green")
+     }
 
 if(digits.val() == '3'){//Get the number of digits based on your selection
     givenNum.text(Math.floor(Math.random() * (1000 - 100 + 1) ) + 100);
@@ -88,6 +91,8 @@ if(digits.val() == '3'){//Get the number of digits based on your selection
 
 setTimeout(() => {//This will hide a shown number after the display time that you selected expires
     hideNum()
+    guessBtn.css('pointer-events','all')
+
   }, selectedTime)
 
     
@@ -100,19 +105,10 @@ let getMaxNum = localStorage.getItem('counter') //the highest score you have wil
 maxScore.text(getMaxNum) //maxScore that is shown on screen will get highest score you have
 
 
-
-
-
-  
-
-
-
-
-
-guessBtn.on('click',function xf(){ //This will execute when you click 'Submit a number' btn
+guessBtn.on('click',function (){ //This will execute when you click 'Submit a number' btn
     generateNum.css('pointer-events','all')
     showNum()
- 
+
 
 
     if(guessNum.val() == ""){
@@ -130,29 +126,26 @@ guessBtn.on('click',function xf(){ //This will execute when you click 'Submit a 
         if(givenNum.text().length == 3){
             sc -= 4;
             score.text(`${sc}`);
-            score.addClass("colorChange__red")
     
         }else if(givenNum.text().length == 4){
             sc -= 2;
             score.text(`${sc}`);
-            score.addClass("colorChange__red")
    
         }else if(givenNum.text().length == 5){
             sc -= 1;
             score.text(`${sc}`);
-            score.addClass("colorChange__red")
 
         }else if(givenNum.text().length == 6){
             sc -= 0.5;
             score.text(`${sc}`);
-            score.addClass("colorChange__red")
 
         }else if(givenNum.text().length == 7){
             sc -= 0.25;
             score.text(`${sc}`);
-            score.addClass("colorChange__red")
           
         }
+        score.addClass("colorChange__red")
+        lastNum.text(givenNum.text()).addClass("colorChange__lastNum_red")
 
     }else if(guessNum.val() == givenNum.text()){
         guessBtn.css('pointer-events','none')
@@ -163,32 +156,29 @@ guessBtn.on('click',function xf(){ //This will execute when you click 'Submit a 
         if(givenNum.text().length == 3){
             sc += 0.25;
             score.text(`${sc}`);
-            score.addClass("colorChange__green")
 
         }else if(givenNum.text().length == 4){
             sc += 0.5;
             score.text(`${sc}`);
-            score.addClass("colorChange__green")
 
         }else if(givenNum.text().length == 5){
             sc += 1;
             score.text(`${sc}`);
-            score.addClass("colorChange__green")
 
         }else if(givenNum.text().length == 6){
             sc += 2;
             score.text(`${sc}`);
-            score.addClass("colorChange__green")
 
         }else if(givenNum.text().length == 7){
             sc += 4;
             score.text(`${sc}`);
-            score.addClass("colorChange__green")
 
         }
+        score.addClass("colorChange__green")
+        lastNum.text(givenNum.text()).addClass("colorChange__lastNum_green")
+
+
     }
-    
-    
 
     if(sc > getMaxNum) { 
         localStorage.setItem('counter',sc)
@@ -198,7 +188,6 @@ guessBtn.on('click',function xf(){ //This will execute when you click 'Submit a 
 
     // $('.btn__one').focus() this will focus 'Generate a number' btn
     $('.btn__two').blur()
-    lastNum.text(givenNum.text())
     givenNum.text('')
     guessNum.val('')
     guessNum.prop('disabled',true)

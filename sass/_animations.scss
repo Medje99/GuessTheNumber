@@ -43,3 +43,33 @@
     100% { color: var(--color-primary); 
     }
   }
+
+
+
+
+  
+  @keyframes red-lastNum {
+    0% { 
+        color: red ;
+        font-size: 2.5rem;
+    }
+    50% { 
+        color: red;
+        font-size: 2rem;
+    }
+    100% { color: var(--color-primary); 
+    }
+  }
+
+  @keyframes green-lastNum {
+    0% { 
+        color: lightgreen ;
+        font-size: 2.5rem;
+    }
+    50% { 
+        color: lightgreen;
+        font-size: 2rem;
+    }
+    100% { color: var(--color-primary); 
+    }
+  }

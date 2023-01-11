@@ -74,3 +74,13 @@ input[type=number] {
 .colorChange__green {
     animation: green-change 1s ease-in;
 }
+
+.colorChange__lastNum_red{
+    animation: red-lastNum 1s ease-in;
+
+}
+
+.colorChange__lastNum_green{
+    animation: green-lastNum 1s ease-in;
+    
+}

@@ -46,6 +46,12 @@ input[type=number] {
 .colorChange__green {
   animation: green-change 1s ease-in; }
 
+.colorChange__lastNum_red {
+  animation: red-lastNum 1s ease-in; }
+
+.colorChange__lastNum_green {
+  animation: green-lastNum 1s ease-in; }
+
 .container {
   max-width: 150rem;
   margin: 12.5rem auto;
@@ -94,7 +100,8 @@ input[type=number] {
   background-color: var(--color-grey-dark-1);
   flex: 1;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  position: relative; }
 
 .logo {
   height: 4.5rem;
@@ -170,6 +177,11 @@ input[type=number] {
     box-shadow: 0px 15px 20px rgba(51, 153, 255, 0.4);
     color: #fff;
     transform: translateY(-0.7rem); }
+  .btn__one:focus, .btn__two:focus {
+    background-image: var(--background-color-1);
+    box-shadow: 0px 15px 20px rgba(51, 153, 255, 0.4);
+    color: #fff;
+    transform: translateY(-0.7rem); }
   .btn__one:active, .btn__two:active {
     transform: translateY(0.5rem); }
 
@@ -206,6 +218,21 @@ input[type=number] {
   .gameScore {
     font-size: 1.75rem; } }
 
+.lastNum {
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-right: 1rem; }
+
+.rules {
+  background-color: transparent;
+  border: none;
+  right: 0px;
+  bottom: -5px;
+  font-size: 4rem;
+  position: absolute;
+  color: var(--color-primary); }
+
 @keyframes opacityOne {
   from {
     opacity: 0; }
@@ -235,5 +262,25 @@ input[type=number] {
   50% {
     color: lightgreen;
     font-size: 3rem; }
+  100% {
+    color: var(--color-primary); } }
+
+@keyframes red-lastNum {
+  0% {
+    color: red;
+    font-size: 2.5rem; }
+  50% {
+    color: red;
+    font-size: 2rem; }
+  100% {
+    color: var(--color-primary); } }
+
+@keyframes green-lastNum {
+  0% {
+    color: lightgreen;
+    font-size: 2.5rem; }
+  50% {
+    color: lightgreen;
+    font-size: 2rem; }
   100% {
     color: var(--color-primary); } }
