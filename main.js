@@ -11,25 +11,13 @@ let rules = $('.rules');
 
 
 
-digits.on('change', function(){//When you select the number of digits to display this will execute
-    switch(digits.val()){
-    case '3':
-        givenNum.text('***')
-        break;
-    case '4':
-        givenNum.text('****')
-        break;
-    case '5':   
-        givenNum.text('*****')
-        break;
-    case '6':
-        givenNum.text('******')
-        break;
-    case '7':
-        givenNum.text('*******')
-        break;
-}   
-
+digits.on('change', function(){
+    var num = digits.val();
+    var stars = "";
+    for (var i = 0; i < num; i++) {
+        stars += "*";
+    }
+    givenNum.text(stars);
 });
 
 
