@@ -21,25 +21,11 @@ digits.on('change', function(){
 });
 
 
-let selectedTime = 1000; 
+let selectedTime = time.val();
 
 
 time.on('change', function (){ //When you select the display time of digits
-switch(time.val()){
-    case '1000':
-        selectedTime = 1000;
-        break;
-    case '750':
-        selectedTime = 750;
-        break;
-    case '500':
-        selectedTime = 500;
-        break;
-    case '250':
-        selectedTime = 250;
-        break;
-}
-    return selectedTime;
+selectedTime =  time.val();
 });
 
 
@@ -57,7 +43,7 @@ generateNum.on('click',function getNum(){ //When you click 'Generate a number' b
     generateNum.css('pointer-events','none')
     guessNum.prop('disabled', false);
     score.removeAttr('class')
-    $('.number__guess').focus();
+    $('.number__guess').focus();    
 
     if(lastNum.hasClass("colorChange__lastNum_red")){ 
         lastNum.removeClass("colorChange__lastNum_red") 
