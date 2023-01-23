@@ -51,22 +51,24 @@ generateNum.on('click',function getNum(){ //When you click 'Generate a number' b
         lastNum.removeClass("colorChange__lastNum_green")
      }
 
-if(digits.val() == '3'){//Get the number of digits based on your selection
-    givenNum.text(Math.floor(Math.random() * (1000 - 100 + 1) ) + 100);
-}else if(digits.val() == '4'){
-    givenNum.text(Math.floor(Math.random() * (10000 - 1000 + 1) ) + 1000);
-}else if(digits.val() == '5'){
-    givenNum.text(Math.floor(Math.random() * (100000 - 10000 + 1) ) + 10000);
-}else if(digits.val() == '6'){
-    givenNum.text(Math.floor(Math.random() * (1000000 - 100000 + 1) ) + 100000);
-}else if(digits.val() == '7'){
-    givenNum.text(Math.floor(Math.random() * (10000000 - 1000000 + 1) ) + 1000000);
-}
+
+const ranges = {
+    '3': [100, 999],
+    '4': [1000, 9999],
+    '5': [10000, 99999],
+    '6': [100000, 999999],
+    '7': [1000000, 9999999]
+};
+
+const selectedRange = ranges[digits.val()];
+givenNum.text(Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1) ) + selectedRange[0]);
+
+
+
 
 setTimeout(() => {//This will hide a shown number after the display time that you selected expires
     hideNum()
     guessBtn.css('pointer-events','all')
-
   }, selectedTime)
 
     
@@ -74,9 +76,12 @@ setTimeout(() => {//This will hide a shown number after the display time that yo
 
 });
 
+
+
 let sc = 0;
 let getMaxNum = localStorage.getItem('counter') //the highest score you have will be stored in this variable
 maxScore.text(getMaxNum) //maxScore that is shown on screen will get highest score you have
+
 
 
 guessBtn.on('click',function (){ //This will execute when you click 'Submit a number' btn
@@ -84,8 +89,28 @@ guessBtn.on('click',function (){ //This will execute when you click 'Submit a nu
     showNum()
 
 
+    let size = givenNum.text().length;
+    let yourGuess = guessNum.val();
+    let numberToGuess = givenNum.text();
 
-    if(guessNum.val() == ""){
+    const wrong = {
+        3:4,
+        4:2,
+        5: 1,
+        6:0.5,
+        7:0.25,
+    }
+
+    const correct = {
+        3: 0.25,
+        4: 0.5,
+        5: 1,
+        6: 2,
+        7: 4,
+    }
+    
+
+    if(yourGuess == ""){
         alert('Insert a number')
         guessBtn.css('pointer-events','all')
         guessNum.prop('disabled',false)
@@ -93,64 +118,24 @@ guessBtn.on('click',function (){ //This will execute when you click 'Submit a nu
         hideNum()
         return;
    
-    }else if(guessNum.val() !== givenNum.text()){
+    }else if(yourGuess !== numberToGuess){
         guessBtn.css('pointer-events','none')
         
-
-        if(givenNum.text().length == 3){
-            sc -= 4;
-            score.text(`${sc}`);
-    
-        }else if(givenNum.text().length == 4){
-            sc -= 2;
-            score.text(`${sc}`);
-   
-        }else if(givenNum.text().length == 5){
-            sc -= 1;
-            score.text(`${sc}`);
-
-        }else if(givenNum.text().length == 6){
-            sc -= 0.5;
-            score.text(`${sc}`);
-
-        }else if(givenNum.text().length == 7){
-            sc -= 0.25;
-            score.text(`${sc}`);
-          
-        }
+        sc -= wrong[size]
+        score.text(`${sc}`);
+ 
         score.addClass("colorChange__red")
-        lastNum.text(givenNum.text()).addClass("colorChange__lastNum_red")
+        lastNum.text(numberToGuess).addClass("colorChange__lastNum_red")
 
-    }else if(guessNum.val() == givenNum.text()){
+    }else if(yourGuess === numberToGuess){
         guessBtn.css('pointer-events','none')
         guessNum.prop('disabled',true)
       
+        sc += correct[size]
+        score.text(`${sc}`);
 
-
-        if(givenNum.text().length == 3){
-            sc += 0.25;
-            score.text(`${sc}`);
-
-        }else if(givenNum.text().length == 4){
-            sc += 0.5;
-            score.text(`${sc}`);
-
-        }else if(givenNum.text().length == 5){
-            sc += 1;
-            score.text(`${sc}`);
-
-        }else if(givenNum.text().length == 6){
-            sc += 2;
-            score.text(`${sc}`);
-
-        }else if(givenNum.text().length == 7){
-            sc += 4;
-            score.text(`${sc}`);
-
-        }
         score.addClass("colorChange__green")
         lastNum.text(givenNum.text()).addClass("colorChange__lastNum_green")
-
 
     }
 
